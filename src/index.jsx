@@ -24,8 +24,8 @@ function App() {
           keepDefault={false}
           className="mx-auto w-60"
           classSelect="bg-red-500 hover:shadow-md hover:shadow-slate-900"
-          classOptions="bg-red-500 hover:bg-red-500/80"
-          classSelected="bg-red-500/80"
+          classOptions="bg-red-500 hover:bg-[#c53e41]"
+          classSelected="bg-[#c53e41]"
           options={options}
           name="car"
         />
