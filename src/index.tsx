@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 
+import { FormValues } from './@types';
 import Select from './Select';
 import { options } from './data';
 import './index.css';
@@ -9,9 +10,10 @@ function App() {
   const [error, setError] = useState(false);
   const [value, setValue] = useState(0);
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const carValue = +e.target.car.value;
+    const target = e.target as typeof e.target & FormValues;
+    const carValue = +target.car.value;
     setError(carValue === 0);
     setValue(carValue);
   };
@@ -41,5 +43,6 @@ function App() {
   );
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const rootElement = document.querySelector('#root') as HTMLElement;
+const root = ReactDOM.createRoot(rootElement);
 root.render(<App />);

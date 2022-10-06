@@ -1,6 +1,9 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react';
 
-export const options = [
+import { CustomSelect as CS } from './@types';
+
+export const options: CS.TOption[] = [
   { value: 0, label: 'Select car:' },
   { value: 1, label: 'Audi' },
   { value: 2, label: 'BMW' },
