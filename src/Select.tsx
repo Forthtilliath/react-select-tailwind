@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useMemo, useRef, useState } from 'react';
+import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 import { CustomSelect as CS } from './@types';
@@ -32,9 +32,10 @@ const Select: CS.SelectType = ({
     setSelectedIndex(optionIndex);
   };
 
-  const isSelectedIndex = (index: number) => selectedIndex === index;
-
   const handleSelect = () => setOpen((open) => !open);
+
+  const isSelectedIndex = (index: number) => selectedIndex === index;
+  const itemSelected = options[selectedIndex].label;
 
   const closeAllSelect = ({ target: el }: MouseEvent) => {
     const div = (el as HTMLDivElement).closest('div');
@@ -45,20 +46,8 @@ const Select: CS.SelectType = ({
 
   const onKeyDown = () => {};
 
-  const itemSelected = useMemo(
-    () => options[selectedIndex].label,
-    [selectedIndex, options]
-  );
-
-  // useEffect(() => console.log({ itemSelected }), [itemSelected]);
-
-  // useEffect(() => console.log({ open }), [open]);
-
   useEffect(() => {
     if (!divSelectRef.current || !selectRef.current) return;
-
-    // divSelectRef.current.innerHTML =
-    //   options[selectRef.current.selectedIndex].label;
 
     document.addEventListener('click', closeAllSelect);
     return () => document.removeEventListener('click', closeAllSelect);
@@ -67,6 +56,7 @@ const Select: CS.SelectType = ({
 
   return (
     <div className={twMerge(`relative`, className)}>
+      {/* Hidden select */}
       <select
         className="hidden"
         ref={selectRef}
@@ -126,30 +116,6 @@ const Option: CS.OptionType = ({ onClick, children, onKeyDown, className }) => {
   );
 };
 
-// const OptionSelected = (
-//   { open, className, onClick, onKeyDown, children },
-//   ref
-// ) => {
-//   return (
-//     <div
-//       className={twMerge(
-//         `px-4 py-2 border border-transparent border-b-black/10 text-white bg-sky-500 cursor-pointer after:text-white after:absolute after:top-2/4 after:w-0 after:h-0 after:border-[6px] after:border-transparent after:right-2.5 ${
-//           open
-//             ? 'rounded-t-md after:-translate-y-3/4 after:border-b-white'
-//             : 'rounded-md after:-translate-y-1/4 after:border-t-white'
-//         }`,
-//         className
-//       )}
-//       ref={ref}
-//       onClick={onClick}
-//       onKeyDown={onKeyDown}
-//       role="button"
-//       tabIndex={0}>
-//       {/* pointer-events-none */}
-//       {children}
-//     </div>
-//   );
-// };
 // eslint-disable-next-line react/display-name
 const OptionSelectedWithRef = forwardRef<
   HTMLDivElement,
@@ -170,36 +136,9 @@ const OptionSelectedWithRef = forwardRef<
       onKeyDown={onKeyDown}
       role="button"
       tabIndex={0}>
-      {/* pointer-events-none */}
       {children}
     </div>
   );
 });
-
-// const OptionSelected = ({
-//   open,
-//   divSelectRef,
-//   className,
-//   handleSelect,
-//   onKeyDown,
-// }) => {
-//   return (
-//     <div
-//       className={twMerge(
-//         `px-4 py-2 border border-transparent border-b-black/10 text-white bg-sky-500 cursor-pointer after:text-white after:absolute after:top-2/4 after:w-0 after:h-0 after:border-[6px] after:border-transparent after:right-2.5 ${
-//           open
-//             ? 'rounded-t-md after:-translate-y-3/4 after:border-b-white'
-//             : 'rounded-md after:-translate-y-1/4 after:border-t-white'
-//         }`,
-//         className
-//       )}
-//       ref={divSelectRef}
-//       onClick={handleSelect}
-//       onKeyDown={onKeyDown}
-//       role="button"
-//       tabIndex="0"
-//     />
-//   );
-// };
 
 export default Select;

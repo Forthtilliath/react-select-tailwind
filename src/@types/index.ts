@@ -29,15 +29,6 @@ export declare namespace CustomSelect {
       className?: string;
     }>
   >;
-
-  //   type OptionSelectedType = React.FC<
-  //     PropsWithChildren<{
-  //       onClick: React.MouseEventHandler<HTMLDivElement>;
-  //       onKeyDown: () => void;
-  //       className?: string;
-  //       open: boolean;
-  //     }>
-  //   >;
   type OptionSelectedProps = {
     onClick: React.MouseEventHandler<HTMLDivElement>;
     onKeyDown: () => void;
