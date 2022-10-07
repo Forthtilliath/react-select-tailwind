@@ -17,14 +17,12 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  // "plugins": ["react", "react-hooks", "jsx-a11y"],
   "plugins": ["react", "react-hooks"],
   "rules": {
     "react/prop-types": "off",
     "no-undef": "off",
-    "no-unused-vars": "off"
-    // "@typescript-eslint/no-undef": "error",
-    // "@typescript-eslint/no-unused-vars": "error"
+    "no-unused-vars": "off",
+    "jsx-a11y/click-events-have-key-events": "off"
   },
   "settings": {
     "react": {

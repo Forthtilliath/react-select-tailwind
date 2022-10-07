@@ -1,9 +1,11 @@
 export declare namespace CustomSelect {
+  /** Type of data recieved */
   type TOption = {
     value: string | number;
     label: React.ReactNode;
   };
 
+  /** Type of main component */
   type SelectType = React.FC<{
     keepDefault?: boolean;
     /** Classes of the container */
@@ -22,21 +24,22 @@ export declare namespace CustomSelect {
     name?: string;
   }>;
 
+  /** Type of options component */
   type OptionType = React.FC<
     React.PropsWithChildren<{
       onClick: React.MouseEventHandler<HTMLDivElement>;
-      onKeyDown: () => void;
       className?: string;
     }>
   >;
+
+  /** Type of the selected component */
   type OptionSelectedProps = {
     onClick: React.MouseEventHandler<HTMLDivElement>;
-    onKeyDown: () => void;
     className?: string;
     open: boolean;
   };
 
-  type OptionSelectedType = React.ComponentPropsWithRef<'div'>;
+  type OptionSelectedType = React.PropsWithChildren<OptionSelectedProps>;
 }
 
 export type FormValues = {
